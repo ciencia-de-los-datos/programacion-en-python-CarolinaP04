@@ -13,6 +13,9 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 """
 
 
+from re import X
+
+
 def pregunta_01():
     """
     Retorne la suma de la segunda columna.
@@ -21,7 +24,8 @@ def pregunta_01():
     214
 
     """
-    return
+    x=214
+    return x
 
 
 def pregunta_02():
