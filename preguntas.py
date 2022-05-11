@@ -21,7 +21,17 @@ def pregunta_01():
     214
 
     """
-    return
+    import csv
+    with open("data.csv",'r') as x:
+        data = csv.reader(x,delimiter = "\t")
+        columns = list (data)
+
+    suma=0
+
+    for num in columns:
+        suma += int(num[1])
+
+    return suma
 
 
 def pregunta_02():
@@ -39,7 +49,23 @@ def pregunta_02():
     ]
 
     """
-    return
+    from operator import itemgetter
+    with open("data.csv","r") as file:
+        data = file.readlines()
+
+    data = [row[0] for row in data]
+
+    result = dict()
+
+    for letra in data:
+        if letra in result.keys():
+            result[letra] = result[letra] + 1
+        else:
+            result[letra] = 1
+    tuplas = [(key, valor) for key, valor in result.items()]
+    tuplas = sorted(tuplas, key=itemgetter(0), reverse=False)
+    
+    return tuplas
 
 
 def pregunta_03():
@@ -57,7 +83,30 @@ def pregunta_03():
     ]
 
     """
-    return
+
+    import csv
+    from collections import Counter
+    with open("data.csv",newline='') as t:
+        data = csv.reader(t,delimiter ="\t")
+        columns =list(data)
+    lista = list()
+    for i in columns:
+        a= i[:2]
+        lista.append(a)
+    sumatoria= {}
+    for row in lista:
+        key = row[0]
+        value = int(row[1])
+        if key in sumatoria:
+            sumatoria[key] += value
+        else:
+            sumatoria[key] = value
+
+    diccionario = dict(sorted(sumatoria.items(), key=lambda item: item[0]))
+
+    tuplas = list(diccionario.items())
+ 
+    return tuplas
 
 
 def pregunta_04():
@@ -82,7 +131,32 @@ def pregunta_04():
     ]
 
     """
-    return
+
+    import csv
+    from collections import Counter
+    with open("data.csv",newline='') as t:
+        data = csv.reader(t,delimiter ="\t")
+        columns =list(data)
+    lista = list()
+    for i in columns:
+        a= i[2]
+        lista.append(a)
+    lista1 = list()
+    for x in lista:
+        c=x[5:7]
+        lista1.append(c)
+    frecuencia={}
+    for n in lista1:
+        if n in frecuencia:
+            frecuencia[n] += 1
+        else: 
+            frecuencia[n] =1
+
+    diccionario = dict(sorted(frecuencia.items(), key=lambda item: item[0]))
+
+    tuplas = list(diccionario.items())
+    
+    return tuplas
 
 
 def pregunta_05():
@@ -100,7 +174,30 @@ def pregunta_05():
     ]
 
     """
-    return
+
+    import csv
+    from collections import Counter
+    from operator import itemgetter
+    with open("data.csv",newline='') as t:
+        data = csv.reader(t,delimiter ="\t")
+        columns =list(data)
+    lista = [row[0] for row in columns]
+    lista1 = [int(fila[1]) for fila in columns]
+    lista2 = list(zip(lista,lista1))
+    diccionario= {}
+    for row in lista2:
+        key = row[0]
+        valor = []
+        valor1 = row[1]
+        if key in diccionario:
+            diccionario[key].append(valor1)
+        else:
+            diccionario[key]=valor
+            diccionario[key].append(valor1)
+    diccionario = [(key,max(valor),min(valor)) for key,valor in diccionario.items()]
+    diccionario = sorted(diccionario,key = itemgetter(0), reverse = False)
+    
+    return diccionario
 
 
 def pregunta_06():
@@ -125,7 +222,38 @@ def pregunta_06():
     ]
 
     """
-    return
+
+    import csv
+    from operator import itemgetter
+    with open ("data.csv","r") as file:
+        data = file.readlines()
+    data1= [row[:-1] for row in data]
+    data2 = [str(row).split("\t")[-1] for row in data1]
+    data4 = []
+    data5=[]
+    for row in data2:
+        a= row.split(",")
+        data4.extend(a)
+    for row in data4:
+        b= row.split(":")
+        data5.extend(b)
+    x= data5[0::2]
+    y = data5[1::2]
+    xy = zip(x,y)
+    diccionario= {}
+    for row in xy:
+        key = row[0]
+        valor = []
+        valor1 = int(row[1])
+        if key in diccionario:
+            diccionario[key].append(valor1)
+        else:
+            diccionario[key]=valor
+            diccionario[key].append(valor1)
+    diccionario = [(key,min(valor),max(valor)) for key,valor in diccionario.items()]
+    diccionario = sorted(diccionario,key = itemgetter(0), reverse = False)
+    
+    return diccionario
 
 
 def pregunta_07():
@@ -149,7 +277,31 @@ def pregunta_07():
     ]
 
     """
-    return
+
+    import csv
+    from collections import Counter
+    from operator import itemgetter
+    with open("data.csv",newline='') as t:
+        data = csv.reader(t,delimiter ="\t")
+        columns =list(data)
+    lista = [row[0] for row in columns]
+    lista1 = [int(fila[1]) for fila in columns]
+    lista2 = list(zip(lista,lista1))
+    diccionario = {}
+    for row in lista2:
+        key = row[1]
+        valor = []
+        valor1 = row[0]
+        if key in diccionario:
+            diccionario[key].append(valor1)
+        else:
+            diccionario[key]=valor
+            diccionario[key].append(valor1)
+    diccionario1 = dict(sorted(diccionario.items(), key=lambda item: item[0]))
+
+    tuplas = list(diccionario1.items())
+
+    return tuplas
 
 
 def pregunta_08():
@@ -174,7 +326,36 @@ def pregunta_08():
     ]
 
     """
-    return
+
+    import csv
+    from collections import Counter
+    from operator import itemgetter
+    with open("data.csv",newline='') as t:
+        data = csv.reader(t,delimiter ="\t")
+        columns =list(data)
+    lista = [row[0] for row in columns]
+    lista1 = [int(fila[1]) for fila in columns]
+    lista2 = set(list(zip(lista,lista1)))
+    lista3 = sorted(lista2, key = lambda ord : ord[0])
+    diccionario = {}
+    for row in lista3:
+        key = row[1]
+        valor = []
+        valor1 = row[0]
+        if key in diccionario:
+            if valor1 in valor:
+                next
+            else:
+                diccionario[key].append(valor1)
+        else:
+            diccionario[key]=valor
+            diccionario[key].append(valor1)
+
+    diccionario1 = dict(sorted(diccionario.items(), key=lambda item: item[0]))
+
+    tuplas = list(diccionario1.items())
+    
+    return tuplas
 
 
 def pregunta_09():
@@ -197,7 +378,31 @@ def pregunta_09():
     }
 
     """
-    return
+    with open ("data.csv","r") as file:
+        data = file.readlines()
+    data1= [row[:-1] for row in data]
+    data2 = [str(row).split("\t")[-1] for row in data1]
+    data3 = []
+    data4=[]
+    for row in data2:
+        a= row.split(",")
+        data3.extend(a)
+    for row in data3:
+        b= row.split(":")
+        data4.extend(b)
+    x= data4[0::2]
+    y = data4[1::2]
+    xy = zip(x,y)
+    diccionario = {}
+    for row in xy:
+        key = row[0]
+        if key in diccionario:
+            diccionario[key] += 1
+        else:
+            diccionario[key] = 1
+    diccionario1 = dict(sorted(diccionario.items(), key=lambda item: item[0]))
+    
+    return diccionario1
 
 
 def pregunta_10():
@@ -218,7 +423,20 @@ def pregunta_10():
 
 
     """
-    return
+
+    import csv
+    from operator import itemgetter
+    with open ("data.csv","r") as file:
+        data = file.readlines()
+    data1= [row for row in data]
+    data2 = [str(row).split("\t")[-1].split(",") for row in data1]
+    data3 = [str(row).split("\t")[-2].split(",") for row in data1]
+    data4 = [len(row) for row in data2]
+    data5 = [row[0] for row in data]
+    data6 = [len(row) for row in data3]
+    lista=zip(data5,data6,data4)
+    
+    return list(lista)
 
 
 def pregunta_11():
@@ -239,7 +457,40 @@ def pregunta_11():
 
 
     """
-    return
+
+    import csv
+    from operator import itemgetter
+    with open ("data.csv","r") as file:
+        data = file.readlines()
+    data1= [row for row in data]
+    data2 = [str(row).split("\t")[-2] for row in data1]
+    data3 = [row[2] for row in data]
+    data4 =[]
+    for row1,row2 in zip(data2,data3):
+        a = str(row1+","+row2)
+        data4.append(a.split(","))
+
+    data5 = [str(row).split(",") for row in data4]
+    data6 =[]
+    for row in data5:
+        for value in row[:-1]:
+            a= list(value + "," + row[-1])
+            data6.append(a)
+    data7 =[row[2] for row in data6]
+    data8 =[int(row[7]) for row in data6]
+    data9 = zip(data7,data8)
+    sumatoria= {}
+    for row in data9:
+        key = row[0]
+        value = int(row[1])
+        if key in sumatoria:
+            sumatoria[key] += value
+        else:
+            sumatoria[key] = value
+
+    diccionario = dict(sorted(sumatoria.items(), key=lambda item: item[0]))
+    
+    return diccionario
 
 
 def pregunta_12():
@@ -257,4 +508,29 @@ def pregunta_12():
     }
 
     """
-    return
+    
+    import csv
+    with open ("data.csv","r") as file:
+        data = file.readlines()
+
+    data = [row.replace('\n','')for row in data]
+    data1 = [(row.split('\t')[0],(row.split('\t')[-1])) for row in data]
+    data2 = []
+    for i in data1:
+        data3 = i[1].split(",")
+        for h in data3:
+            data4 = int(h.split(":")[1])
+            data5= (i[0], data4)
+            data2.append(data5)
+    diccionario = {}
+    for row in data2:
+        key = row[0]
+        valor = int(row[1])
+        if key in diccionario:
+            diccionario[key] += valor
+        else:
+            diccionario[key] = valor
+
+    diccionario1 = dict(sorted(diccionario.items(), key=lambda item: item[0]))
+    
+    return diccionario1
