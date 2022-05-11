@@ -508,6 +508,7 @@ def pregunta_12():
     }
 
     """
+    
     import csv
     with open ("data.csv","r") as file:
         data = file.readlines()
